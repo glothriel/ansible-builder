@@ -1,0 +1,11 @@
+#!/bin/bash
+
+pyinstaller $(which ansible-playbook) \
+    -F \
+    --hidden-import ConfigParser \
+    --hidden-import ansible.cli \
+    --hidden-import ansible.cli.playbook \
+    --hidden-import pipes \
+    --add-data /usr/local/lib/python2.7/dist-packages/ansible/config/base.yml:ansible/config
+
+cp dist/ansible-playbook /opt/artifacts
